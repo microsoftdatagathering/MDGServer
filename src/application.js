@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('mdg', ['ui.router', 'ui.sortable',
-    'ngDragDrop', 'ngSanitize', 'ngDropdowns',
+    'ngDragDrop', 'ngSanitize', 'ngDropdowns', 'ngFileUpload',
     'config', 'base64', 'ngCookies', 'pascalprecht.translate',
 
     'mdg.app.authorization',
@@ -31,6 +31,7 @@
     'mdg.ui.nfEvent',
     'mdg.ui.onEnter',
 
+    'mdg.ui.selectCustomLogo',
     'mdg.ui.fileSelect',
     'mdg.ui.focusMe',
     'mdg.ui.focusModal',
@@ -145,17 +146,17 @@
 
   angular.module('mdg').filter('selectPublished', function () {
     return function (array, selectVal) {
-      if (!selectVal) {
+      if (selectVal === 'all') {
         return array;
       }
 
-      if (selectVal === 'Published') {
+      if (selectVal === 'published') {
         return _(array).filter(function (item) {
           return item.published;
         });
       }
 
-      if (selectVal === 'Unpublished') {
+      if (selectVal === 'unpublished') {
         return _(array).filter(function (item) {
           return !item.published;
         });
@@ -254,6 +255,7 @@
         authorizationService.logout().then(
           function success() {
             localStorage.clear();
+            sessionStorage.clear();
             window.document.location.href = '/home';
           },
 
@@ -321,11 +323,12 @@
       '<button class="transparent-button selected">',
       '<span class="my-selected-class">{{dropdownModel[labelField]}}</span>',
       '</button>',
-      '<ul class="dropdown">',
+      '<ul class="dropdown" role="listbox">',
       '<li ng-repeat="item in dropdownSelect"',
       ' class="dropdown-item"',
       ' dropdown-select-item="item"',
-      ' dropdown-item-label="labelField">',
+      ' dropdown-item-label="labelField" ' +
+      'role="option">',
       '</li>',
       '</ul>',
       '</div>'

@@ -7,7 +7,7 @@
                 {{ 'schedule_export.Schedule_an_Export' | translate }}
             </h2>
              <span class="b-modal-window__main-block__header--icon-close">
-              <a class="transparent-button" ui-sref="^" tabindex="1">
+              <a class="transparent-button" ui-sref="^" tabindex="1"  title="{{ 'Close_popup' | translate}}">
                 <span class="fa fa-times"></span>
               </a>
             </span>
@@ -15,8 +15,7 @@
         <div class="b-modal-window__main-block__body">
             <form name="exportScheduleForm" id="export-schedule"
                   ng-model="exportScheduleForm"
-                  novalidate
-                  ng-submit="createSubscription()">
+                  novalidate>
                 <div class="b-results-export__export-schedule">
                     <p>{{ 'schedule_export.tip' | translate }}</p>
 
@@ -28,7 +27,6 @@
                                class="b-results-export__export-schedule__select-field"
                                tabindex="2"
                                required
-                               readonly="readonly"
                                placeholder="{{today| date: 'dd/MM/yyyy'}}"
                                ng-model="schedule.from">
 
@@ -44,7 +42,6 @@
                                class=" b-results-export__export-schedule__select-field b-results-export__export-schedule__select-field--long"
                                tabindex="3"
                                required
-                               readonly="readonly"
                                placeholder="{{today| date: 'dd/MM/yyyy'}}"
                                ng-model="schedule.to">
 
@@ -80,13 +77,20 @@
                         <span class="email b-results-export__export-schedule__actual__item--email" title="{{subscription.email}}">{{subscription.email}}</span>
                         <span class="b-results-export__export-schedule__actual__item--date">{{subscription.from | date: 'dd/MM/yyyy'}}</span>
                         <span class="b-results-export__export-schedule__actual__item--date">{{subscription.to | date: 'dd/MM/yyyy'}}</span>
-                        <span class="fa fa-times b-results-export__export-schedule__actual__item--delete" ng-click="deleteSubscription(subscription._id, $index)"></span>
+                        <button class="transparent-button"  ng-click="deleteSubscription(subscription._id, $index)" role="button"
+                                tabindex="5"
+                                title="Delete Subscription">
+                          <span class="fa fa-times b-results-export__export-schedule__actual__item--delete"></span>
+                          <span class="button-title">Delete Subscription</span>
+                        </button>
+
                     </li>
                 </ul>
 
-                <button type="submit" value="{{ 'schedule_export.Schedule_this_Export' | translate }}"
+                <button value="{{ 'schedule_export.Schedule_this_Export' | translate }}"
                         role="button"
-                        tabindex="5"
+                        tabindex="6"
+                        ng-click="createSubscription()"
                         class="b-results-export__export-schedule__export-button">
                     <span class="fa fa-external-link-square"></span>
                     {{ 'schedule_export.Schedule_this_Export' | translate }}

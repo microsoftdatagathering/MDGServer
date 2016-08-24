@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('mdg.app.surveys')
-    .service('surveysService', function ($q, $http, $rootScope, offlineService) {
+    .service('surveysService', function ($q, $http, Upload, $rootScope, offlineService) {
       /** @const */
       var
         SURVEYS_URL = '/surveys/',
@@ -171,6 +171,17 @@
           });
       }
 
+      function makeSurveyPublic (surveyId, body) {
+          return Upload.upload({
+            url: '/public/makeSurveyPublic/' + surveyId,
+            data: body
+          });
+      }
+
+      function getPublicLink (surveyId) {
+        return $http.get('/public/getPublicLink/' + surveyId);
+      }
+
       return {
         surveyList:             surveyList,
         getArchivedSurveys:     getArchivedSurveys,
@@ -183,7 +194,9 @@
         uploadXML:              uploadXML,
         downloadXML:            downloadXML,
         checkFileType:          checkFileType,
-        archiveSurvey:          archiveSurvey
+        archiveSurvey:          archiveSurvey,
+        getPublicLink:          getPublicLink,
+        makeSurveyPublic:       makeSurveyPublic
       };
     });
 })();

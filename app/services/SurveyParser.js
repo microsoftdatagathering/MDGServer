@@ -203,6 +203,77 @@ function Survey (jxonTree) {
   }
 }
 
+exports.SurveysToJxonTree = function (surveys, url, userId) {
+  var res = {
+    attrs: {
+      xmlns: "http://openrosa.org/xforms/xformsList"
+    },
+    tagName: 'xforms',
+    value: null,
+    items: getItems()
+  };
+
+  function getItems () {
+    return surveys.map(function (survey) {
+      return {
+        tagName: 'xform',
+        value: null,
+        attrs: {},
+        items: getItem(survey)
+      };
+    });
+  }
+
+  function getItem (survey) {
+    return [
+      {
+        tagName: 'formID',
+        attrs: {},
+        items: [],
+        value: survey._id
+      },
+      {
+        tagName: 'name',
+        attrs: {},
+        items: [],
+        value: survey.title
+      },
+      {
+        tagName: 'downloadUrl',
+        attrs: {},
+        items: [],
+        value: url + '/enketo/' + userId + '/' + survey._id
+      },
+      {
+        tagName: 'hash',
+        attrs: {},
+        items: [],
+        value: survey._id
+      },
+      {
+        tagName: 'version',
+        attrs: {},
+        items: [],
+        value: '1'
+      },
+      {
+        tagName: 'customLogo',
+        attrs: {},
+        items: [],
+        value: survey.customLogo ? '/customlogos/' + survey._id : null
+      },
+      {
+        tagName: 'customMessage',
+        attrs: {},
+        items: [],
+        value: survey.customMessage
+      },
+    ]
+  }
+
+  return res;
+};
+
 exports.SurveyToJxonTree = function (me) {
   var
     res = {
@@ -340,6 +411,11 @@ exports.SurveyToJxonTree = function (me) {
 
       if (me.__binds[bindKey].relevant) {
         res.attrs.relevant = me.__binds[bindKey].relevant;
+      }
+
+      if (me.__binds[bindKey].type === 'note') {
+        res.attrs.readonly = 'true()';
+        res.attrs.type = 'string';
       }
 
       return res;

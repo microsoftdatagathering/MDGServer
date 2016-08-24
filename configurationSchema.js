@@ -53,6 +53,24 @@ module.exports = {
       }
     }
   },
+  enketo: {
+    title: 'Enketo',
+    description: 'Parameters for Enketo',
+    children: {
+      token: {
+        type: String,
+        title: 'enketo token',
+        description: 'enketo token',
+        defaults: '5aslore4vgmvlsor'
+      },
+      server: {
+        type: String,
+        title: 'enketo server url',
+        description: 'enketo server',
+        defaults: 'http://mdg-test.wookieelabs.com:9090/api/v1/survey'
+      }
+    }
+  },
   languages: {
     title: 'Languages',
     description: 'Parameters for Digest Authorization. Do NOT change these unless you know what you are doing',
@@ -121,6 +139,37 @@ module.exports = {
         type: String,
         title: 'password',
         defaults: 'admin'
+      }
+    }
+  },
+  OAuth: {
+    title: 'OAuth',
+    description: 'Parameters for OAuth.',
+    children: {
+      clientId: {
+        type: String,
+        title: 'CLIENT_ID',
+        defaults: ''
+      },
+      clientSecret: {
+        type: String,
+        title: 'CLIENT_SECRET',
+        defaults: ''
+      },
+      redirectUrl: {
+        type: String,
+        title: 'redirect url',
+        defaults: '/api/auth'
+      },
+      tokenUrl: {
+        type: String,
+        title: 'token url',
+        defaults: 'https://login.microsoftonline.com/common/oauth2/v2.0/token'
+      },
+      authUrl: {
+        type: String,
+        title: 'token url',
+        defaults: 'https://graph.microsoft.com/v1.0/me'
       }
     }
   },
@@ -242,11 +291,23 @@ module.exports = {
           }
         }
       },
-      mandrillApiKey: {
+      transport: {
         type: String,
-        title: 'Mandrill Api Key',
-        description: 'Defines Mandrill Api Key',
-        defaults: 'WO6r_NFfdABIKOTEgdvuvQ'         /* test api KEY */
+        title: 'Mail transport',
+        description: 'Defines mail transport protocol',
+        defaults: 'Direct'
+      },
+      transportOptions: {
+        title: 'Mail transport Options',
+        description: 'Defines method for sending e-mails',
+        children: {
+          service: {
+            type: String,
+            title: 'Service',
+            description: 'The name of send mail service',
+            defaults: 'Sendmail'
+          }
+        }
       },
       emailsForUsersReport: {
         type: Object,

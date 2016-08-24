@@ -9,13 +9,13 @@
         <header class="b-page__header">
             <div class="b-head-logo">
                 <a href="#" class="b-logo__title">
-                    <img class="b-logo__img" src="assets/images/logo-30px.png"/>
+                    <img class="b-logo__img" src="assets/images/logo-30px.png" alt="Microsoft Data Gathering"/>
                     <span>Microsoft Data Gathering</span>
                 </a>
             </div>
 
-            <div class="b-menu">
-                <nav class="b-menu-nav" role="tabpanel">
+            <div class="b-menu" role="tabpanel">
+                <nav class="b-menu-nav" role="tablist">
                     <a href="#/surveys/list" class="b-menu-nav__link"
                        role="tab"
                        ng-class="{ 'b-menu-nav__link--active':  $state.includes('page.surveys') ||
@@ -25,7 +25,7 @@
                         {{'header.surveys' | translate}}
 
                     </a>
-                    <a href="#/users" class="b-menu-nav__link"
+                    <a href="#/users/group:" class="b-menu-nav__link"
                        role="tab"
                        ng-if="loggedInUser.permission !== 'operator'"
                        ui-sref="page.users.group({groupId: ''})"
@@ -45,7 +45,6 @@
             <div class="b-account-menu">
                 <a class="b-account-menu__locale"
                    href=""
-                   role="select"
                    dropdown-menu="langauges"
                    dropdown-onchange="changeLanguage(selected)">
                     {{'header.language' | translate}}
@@ -53,7 +52,6 @@
 
                 <a class="b-account-menu__user"
                    href=""
-                   role="select"
                    dropdown-menu="dropdownList"
                    dropdown-model="dropdownSelect"
                    dropdown-onchange="selectMenu(selected)">

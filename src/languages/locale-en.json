@@ -2,6 +2,7 @@
   "offlineMode": "You are working in offline mode. Only Surveys page and Survey Builder are available in offline mode",
   "offlineNotSupport": "Your browser does not support webSQL. Please use Google Chrome browser to work in the offline mode.",
   "Synchronize": "Synchronize",
+  "Close_popup": "Close popup",
   "header": {
     "surveys": "Surveys",
     "users": "Users",
@@ -15,7 +16,8 @@
     "Name": "Name",
     "Results": "Results",
     "Publisher": "Publisher",
-    "Date": "Date"
+    "Date": "Date",
+    "Sort_by": "Sort by "
   },
   "surveys": {
     "SUBTITLE": "Surveys Home",
@@ -31,6 +33,14 @@
     "Duplicate_survey": "Duplicate this survey",
     "Delete_survey": "Delete this survey",
     "Can_not_be_deleted": "Published survey can not be deleted",
+    "Get_public_link": "Get public link for {title} survey",
+    "Public_link": "Public link for this survey is:",
+    "Custom_Survey_Message": "Custom Thank You Message",
+    "Custom_Survey_Logo": "Custom Survey Logo",
+    "Copy_to_clipboard": "Copy to clipboard",
+    "Make_survey_public": "Make this survey public",
+    "Select_expire_date": "Select the expire date",
+    "Save": "Save",
     "Create_Survey": "Create a new Survey",
     "Search_Name_Publisher": "Search Name or Publisher...",
     "All": "All",
@@ -88,7 +98,7 @@
     "Add_Group": "Add a new Group",
     "All_users": "All users",
     "New_group_name": "New group name",
-    "save_group": "Press enter to save group",
+    "save_group": "Save group",
     "Send_SMS_group": "Send an SMS to this group",
     "Delete_group": "Delete this group"
   },
@@ -208,6 +218,8 @@
     "maskError": "If Mask Input is used, the Default Answer value should match the mask.",
     "maxLengthError": "The Default Answer should not exceed the Maximum Answer Length",
     "Add_option": "Add a new option",
+    "Edit_option": "Edit an option",
+    "Delete_option": "Delete an option",
     "Import_existing_option": "Import existing option...",
     "Notes_description": "Notes are no-input text prompts which can provide notes, hints, instructions or messages to the surveyor or respondent"
   },

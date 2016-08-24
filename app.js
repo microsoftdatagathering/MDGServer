@@ -33,6 +33,11 @@ var
   monthlyReportCntr = require('./app/controllers/web/monthlyReport'),
   adminPageCntr = require('./app/controllers/web/adminPage'),
   getStartedCntr = require('./app/controllers/web/getStarted'),
+  customLogoCntr = require('./app/controllers/web/customLogos'),
+
+  enketoCntr = require('./app/controllers/web/enketo'),
+
+  liveIdAuthCntr = require('./app/controllers/web/liveIdAuth'),
 
   manifestCntr = require('./app/controllers/web/manifest'),
 
@@ -120,6 +125,7 @@ exports.run = function (mongoUrl, port, callback) {
   if (app.settings.env === 'development') {
     app.use(express.static(__dirname + '/.tmp'));
     app.use('/src', express.static(__dirname + '/src'));
+    app.use('/assets', express.static(__dirname + '/src/assets'));
     app.use('/.tmp', express.static(__dirname + '/.tmp'));
     app.use('/bower_components', express.static(__dirname + '/bower_components'));
   }
@@ -192,8 +198,27 @@ exports.run = function (mongoUrl, port, callback) {
 
     app.get('/home', getStartedCntr.home);
 
+    app.get('/enketoSurveyUrl/:survey', ACLService.checkPermission, enketoCntr.getEnketoSurveyUrl);
+    app.get('/formList', passport.authenticate('digest', { session: false }), enketoCntr.formList);
+    app.get('/enketo/:userId/:survey', enketoCntr.form);
+    app.post('/submission', passport.authenticate('digest', { session: false }), enketoCntr.submission);
+    app.head('/submission', passport.authenticate('digest', { session: false }), function (req, res, next) {
+      res.set({
+        'X-OpenRosa-Version': '1.0',
+        'Location': req.protocol + '://' + req.headers.host + req.originalUrl
+      });
+      res.send(204);
+    });
+
+    app.post('/public/makeSurveyPublic/:survey', enketoCntr.makeSurveyPublic);
+    app.get('/public/getPublicLink/:survey', enketoCntr.getPublicLink);
+    app.get('/public/:survey', enketoCntr.getPublicSurvey);
+
+    app.get('/customlogos/:survey', customLogoCntr.getLogo);
+
+    app.get(Configuration.get('OAuth.redirectUrl'), liveIdAuthCntr.auth);
+
     app.get('/', function (req, res) {
-      console.log('------------------req.user      ', req.user);
       if (req.method === 'HEAD') {
         res.send();
       } else {

@@ -18,7 +18,7 @@ html
           .b-head-logo
             a.b-logo__title(href='#/home')
               img.b-logo__img(src='assets/images/logo-30px.png'
-                alt='MDG Icon')
+                alt='Microsoft Data Gathering Icon')
               span Microsoft Data Gathering
           .b-menu
             nav.b-menu-nav
@@ -130,22 +130,6 @@ html
                     | your data
         .b-page__line
           .b-content.b-content--line
-            h2.b-content-title
-              | Case Study
-            p.b-content__paragraph
-              | This video is about the use of Microsoft Data Gathering to
-              | combat dengue fever in
-              br
-              | Amazonas State, Brazil.
-            .b-content__col-left
-              iframe.b-content__col-left--video(src='//www.youtube.com/embed/kyEK6MVGb8M')
-            .b-content__col-right
-              .b-content__col-right__study-article
-                p.b-content__col-right__study-article--text
-                  | The software was originally created by Nokia in Brazil after a request from the local government to help with the Dengue epidemic there.
-                  | Watch a report from Lonely Planet about our origins and impact in that region
-                  .b-page__line
-          .b-content.b-content--line
             h2.b-content-title#benefits
               | Benefits
             .b-content__col-left
@@ -248,7 +232,7 @@ html
                 img.b-step__left__image(src='../assets/images/getstarted_step1.png'
                   alt='Register to the Microsoft Data Gathering Playground Server')
               .b-step__right
-                h3.b-step__right__title
+                h2.b-step__right__title
                   span.b-step__right__title__count Step 1
                   | Register to the Microsoft Data Gathering Playground Server
                 p.b-step__right__paragraph
@@ -265,7 +249,7 @@ html
                 img.b-step__left__image(src='../assets/images/getstarted_step2.png'
                   alt='Create a survey')
               .b-step__right
-                h3.b-step__right__title
+                h2.b-step__right__title
                   span.b-step__right__title__count Step 2
                   | Create a survey
                 p.b-step__right__paragraph
@@ -283,7 +267,7 @@ html
                 img.b-step__left__image(src='../assets/images/getstarted_step3.png'
                   alt='Download the MDG mobile application')
               .b-step__right
-                h3.b-step__right__title
+                h2.b-step__right__title
                   span.b-step__right__title__count Step 3
                   | Download the Microsoft Data Gathering mobile application
                 p.b-step__right__paragraph
@@ -307,7 +291,7 @@ html
                 img.b-step__left__image(src='../assets/images/getstarted_step4.png'
                   alt='Add users')
               .b-step__right
-                h3.b-step__right__title
+                h2.b-step__right__title
                   span.b-step__right__title__count Step 4
                   | Add users and make your survey available to them
                 p.b-step__right__paragraph
@@ -325,7 +309,7 @@ html
                 img.b-step__left__image(src='../assets/images/getstarted_step5.png'
                   alt='Fill in the survey')
               .b-step__right
-                h3.b-step__right__title
+                h2.b-step__right__title
                   span.b-step__right__title__count Step 5
                   | Fill in the survey and send your results on your mobile device
                 p.b-step__right__paragraph
@@ -346,7 +330,7 @@ html
                 img.b-step__left__image(src='../assets/images/getstarted_step6.png'
                   alt='View and Export')
               .b-step__right
-                h3.b-step__right__title
+                h2.b-step__right__title
                   span.b-step__right__title__count Step 6
                   | View and export your results
                 p.b-step__right__paragraph
@@ -733,6 +717,7 @@ html
               input.e-form__field#password(type="password", name="password", placeholder="Enter your password...")
               .error
               button.e-form__button(type="submit" title='Login') Login
+              // a.e-form__button(href="https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=#{clientId}&response_type=code&response_mode=query&#{redirect_uri}&scope=https%3A%2F%2Fgraph.microsoft.com%2FUser.Read" target="_blank" title='Login with Live ID') Login with Microsoft Account
               p.b-content__paragraph
                 a.b-content__paragraph__link(href="#/forgotPassword") Forgot your password?
               p.b-content__paragraph

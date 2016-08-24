@@ -183,6 +183,29 @@
         }, true);
         setAutocomlete(document.querySelector('#register form input[name="company"]'));
         setAutocomlete(document.querySelector('#register form input[name="industry"]'));
+        setRegistrationFormValues();
+    }
+
+    function setRegistrationFormValues () {
+      var searchString =  window.location.search.substr(1);
+      var searchParams = searchString ? searchString.split('&') : [];
+
+      searchParams.forEach(function(searchParam) {
+        var param = searchParam.split('=');
+
+        if (param.length < 2 ) {
+          return;
+        }
+
+        var key = param[0];
+        var value = param[1];
+
+        var inputElement = document.querySelector('#register form input[name="' + key + '"]');
+
+        if (inputElement) {
+          inputElement.value = value;
+        }
+      });
     }
 
     function closeModal () {
@@ -201,6 +224,7 @@
         form.addEventListener('blur', function (evt) {
             validate(evt.target);
         }, true);
+
         form.addEventListener('submit', function (evt) {
             evt.preventDefault();
             if (validateForm(evt.target)) {
@@ -257,6 +281,7 @@
 
         form.addEventListener('submit', function (evt) {
             evt.preventDefault();
+
             if (evt.target.password.value.length !== 0 && evt.target.username.value.length !== 0) {
                 var xmlhttp = new XMLHttpRequest();
                 xmlhttp.onreadystatechange = function() {

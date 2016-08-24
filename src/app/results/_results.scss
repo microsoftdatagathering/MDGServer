@@ -39,6 +39,11 @@
       font-size: 18px;
       color: $gray-text;
       clear: both;
+
+      &__link {
+        font-weight: bold;
+        cursor: pointer;
+      }
     }
   }
 
@@ -74,10 +79,8 @@
         &__icon {
           background: transparent;
           border: none;
-          float: left;
           font-size: 24px;
           color: $blue;
-
           line-height: 36px;
 
           &:active {
@@ -85,8 +88,16 @@
           }
         }
 
-        .dropdown {
-          margin-top: 100%;
+        .wrap-dd-menu {
+          width: auto;
+          margin-right: 0;
+
+          .dropdown {
+            transform: translateX(-50%);
+            margin-right: 0;
+            margin-left: 0;
+            left: 28px;
+          }
         }
 
         &__arrow-back {
@@ -115,6 +126,7 @@
   &__details {
     display: table-cell;
     width: 50%;
+    max-width: 50vw;
     vertical-align: top;
     padding-left: 24px;
   }
@@ -173,6 +185,10 @@
             font-size: 18px;
             font-weight: 100;
           }
+        }
+
+        &--image {
+          max-width: 100%;
         }
       }
     }

@@ -605,7 +605,6 @@ angular.module('mdg.app.surveys')
             if (q.type == 'cascade1') {
               addCascades(cIndex, q);
             }
-            console.log(clearedSurvey._categories[cIndex]._questions);
           });
         });
 
@@ -1016,7 +1015,7 @@ angular.module('mdg.app.surveys')
       });
     };
 
-    $scope.selectQuestionType = function (question, cIndex, qIndex, copy) {
+    $scope.selectQuestionType = function (selected, question, cIndex, qIndex, copy) {
       var
         questionId,
         categoryId = $scope.surveyData._categories[cIndex].id,
@@ -1033,7 +1032,7 @@ angular.module('mdg.app.surveys')
         };
 
       surveyDirty = true;
-      question.type = question.dropdownSelect.value;
+      question.type = selected.value;
       delete question.mediatype;
 
       switch (question.type) {
@@ -1540,9 +1539,11 @@ angular.module('mdg.app.surveys')
       if ($stateParams.surveyId) {
         return surveysService.editSurvey({ id: $stateParams.surveyId, body: clearSurveyData(survey) }).then(
           function success (config) {
+            $state.go('page.surveys.edit', { surveyId: config.data.id }, {reload: true});
+
             $rootScope.$broadcast('saved_survey', survey.title);
             surveyDirty = false;
-            $scope.surveyEdit.$dirty = false;
+            $scope.editSurveyForm.$dirty = false;
 
             if (!$rootScope.offlineMode) {
               $scope.surveyData.__v = $scope.surveyData.__v + 1;
@@ -1559,13 +1560,11 @@ angular.module('mdg.app.surveys')
       } else {
         return surveysService.createSurvey({ body: clearSurveyData(survey) }).then(
           function success (config) {
-            if (buttonClick) {
-              $state.go('page.surveys.edit', { surveyId: config.data.id }, {reload: true})
-            }
+            $state.go('page.surveys.edit', { surveyId: config.data.id }, {reload: true});
 
             $rootScope.$broadcast('saved_survey', survey.title);
             surveyDirty = false;
-            $scope.surveyEdit.$dirty = false;
+            $scope.editSurveyForm.$dirty = false;
             $scope.surveyData.__v = $scope.surveyData.__v + 1;
           },
           function failed (err) {
@@ -1576,7 +1575,7 @@ angular.module('mdg.app.surveys')
 
     $scope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
       if (toState.name !== "page.surveys.edit" &&
-        ($scope.surveyEdit.$dirty || surveyDirty) &&
+        ($scope.editSurveyForm.$dirty || surveyDirty) &&
         confirm("You are leaving this page.\nDo you want to save changes to your survey?")) {
 
         if (findErrors()) {
@@ -1587,6 +1586,7 @@ angular.module('mdg.app.surveys')
 
         $rootScope.saveSurveyPromise = $scope.saveSurvey();
       }
+
     });
 
     $scope.getSurveyData($stateParams.surveyId);

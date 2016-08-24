@@ -2,6 +2,7 @@
   "offlineMode": "Вы работаете в автономном режиме, доступны только страницы Опросы и Конструктор Опросов",
   "offlineNotSupport": "Ваш браузер не поддерживает webSQL. Используйте Google Chrome для работы в автономном режиме.",
   "Synchronize": "Синхронизировать",
+  "Close_popup": "Закрыть окно",
   "header": {
     "surveys": "Опросы",
     "users": "Пользователи",
@@ -15,7 +16,8 @@
     "Name": "Имя",
     "Results": "Результаты",
     "Publisher": "Отправитель",
-    "Date": "Дата"
+    "Date": "Дата",
+    "Sort_by": "Сортировать "
   },
   "surveys": {
     "SUBTITLE": "Surveys Home",
@@ -31,6 +33,14 @@
     "Duplicate_survey": "Дублировать опрос",
     "Delete_survey": "Удалить опрос",
     "Can_not_be_deleted": "Опубликованный опрос не может быть удален",
+    "Get_public_link": "Get public link for {title} survey",
+    "Public_link": "Public link for this survey is:",
+    "Custom_Survey_Message": "Custom Thank You Message",
+    "Custom_Survey_Logo": "Custom Survey Logo",
+    "Copy_to_clipboard": "Copy to clipboard",
+    "Make_survey_public": "Make this survey public",
+    "Select_expire_date": "Select the expire date",
+    "Save": "Save",
     "Create_Survey": "Создать опрос",
     "Search_Name_Publisher": "Название или Отправитель...",
     "All": "Все",
@@ -208,6 +218,8 @@
     "maskError": "In case Mask Input is used, the Default Answer value should match the mask.",
     "maxLengthError": "Длина значения по умолчанию не может превышать максимальную длину ответа.",
     "Add_option": "Добавить опцию",
+    "Edit_option": "Редактировать опцию",
+    "Delete_option": "Удалить опцию",
     "Import_existing_option": "Импорт опции...",
     "Notes_description": "Вопрос типа 'заметка' представляет собой сообщение, подсказку или инструкцию для человека, который заполняет опрос. Данный тип вопроса носит сугубо информативный характер и не предусматривает возможность ответа."
   },
